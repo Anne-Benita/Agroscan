@@ -49,3 +49,4 @@ venv/
 .venv/
 .env
 database/plant_disease.db
+backend-api/static/uploads/
