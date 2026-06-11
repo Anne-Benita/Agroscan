@@ -1713,7 +1713,7 @@ const styles = StyleSheet.create({
 
   // --- Modal styles ---
   modalOverlay: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     justifyContent: "center",
     alignItems: "center",
     padding: 20,

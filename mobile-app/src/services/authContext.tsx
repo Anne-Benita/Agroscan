@@ -74,7 +74,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setLoading(false);
   }, []);
 
-  const login = async (email, password) => {
+  const login = async (email: string, password: string) => {
     const response = await loginUser(email, password);
     if (response.success && response.user) {
       const sessionUser: UserSession = {
@@ -103,7 +103,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     throw new Error('Authentication failed');
   };
 
-  const register = async (username, email, password) => {
+  const register = async (username: string, email: string, password: string) => {
     const response = await registerUser(username, email, password);
     if (response.success && response.user) {
       const sessionUser: UserSession = {

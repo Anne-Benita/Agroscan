@@ -12,7 +12,8 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export const ScanningAnimation = () => {
   const colorScheme = useColorScheme();
-  const theme = Colors[colorScheme ?? 'light'];
+  const scheme = (colorScheme === 'dark' ? 'dark' : 'light') as keyof typeof Colors;
+  const theme = Colors[scheme];
   const translateY = useSharedValue(0);
 
   useEffect(() => {
@@ -59,6 +60,6 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   overlay: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
   },
 });

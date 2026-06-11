@@ -108,23 +108,30 @@ const weeklyTips = [
   {
     id: 1,
     title: "Understanding Soil pH",
-    desc: "Maintaining correct soil acidity enables root systems to absorb nutrients cleanly.",
+    desc: "Learn how to use Agricultural Lime or Elemental Sulfur to fix sour or bitter soil.",
     icon: Sprout,
     tag: "Soil Health",
   },
   {
     id: 2,
     title: "Early Blight Prevention",
-    desc: "Watering close to the ground keeps leaves dry, preventing spore germination.",
+    desc: "Fungus spreads from mud splashes. Use straw mulch and lower pruning to prevent it.",
     icon: BookOpen,
     tag: "Disease Prevention",
   },
   {
     id: 3,
     title: "Crop Rotation Guide",
-    desc: "Never plant peppers, potatoes, or tomatoes in the same soil back-to-back.",
+    desc: "Balance soil nutrients like a bank account. Rotate nitrogen spenders with legumes.",
     icon: Compass,
     tag: "Best Practices",
+  },
+  {
+    id: 4,
+    title: "Cameroon Planting Seasons",
+    desc: "Learn which crops to plant during the Rainy (March-Oct) and Dry (Nov-Feb) seasons.",
+    icon: Sprout,
+    tag: "Seasonal Guide",
   },
 ];
 
@@ -144,34 +151,26 @@ const tipDetails: Record<number, {
     tag: "Soil Health",
     gradient: ["#0284C7", "#0369A1"],
     icon: Sprout,
-    overview: "Soil pH measures how acidic or alkaline your soil is, on a scale of 0 to 14. A pH level of 7.0 is neutral. Most crops thrive in slightly acidic to neutral soil (pH 6.0–7.0) because nutrients dissolve easily at this range.",
+    overview: "Soil pH measures how acidic (sour) or alkaline (bitter) your soil is, on a scale of 0 to 14 (pH 7.0 is neutral). If pH is outside a crop's preferred range, nutrient lockout occurs: the roots cannot absorb fertilizer even if you apply it.",
     sections: [
       {
-        title: "Why Soil pH Matters",
+        title: "Crop pH Preferences in this Project",
         points: [
-          "Nutrient Lockout: In highly acidic (below 5.5) or alkaline (above 7.5) soils, essential nutrients like phosphorus, iron, and magnesium bind tightly to soil particles, preventing root absorption.",
-          "Microbial Activity: Beneficial soil bacteria and fungi that decompose organic matter thrive in a neutral pH range.",
-          "Root Development: Acidic soils can leach toxic aluminum into the root zone, pruning and damaging root tips."
-        ]
-      },
-      {
-        title: "Typical Crop Preferences",
-        points: [
-          "Slightly Acidic (6.0 - 6.5): Potatoes, Blueberries, Tomatoes, and Peppers.",
-          "Neutral (6.5 - 7.0): Corn, Grapes, Squash, Spinach, and Beans.",
-          "Alkaline Tolerate (7.0 - 7.5): Cabbage, Cauliflower, and Asparagus."
+          "Highly Acidic (pH 4.5 - 5.5): Blueberries require this soil. They turn yellow and die in neutral or alkaline soil.",
+          "Slightly Acidic (pH 5.0 - 6.0): Potatoes, Strawberries, Apples, and Peaches grow best here. This acidity also prevents Potato Scab.",
+          "Neutral (pH 6.0 - 7.0): Tomatoes, Peppers, Corn, Grapes, and Squash thrive in this range.",
+          "Alkaline-Tolerant (pH 7.0 - 7.5): Oranges and Cherries can tolerate slightly alkaline soils."
         ]
       },
       {
         title: "How to Correct Your Soil pH",
         points: [
-          "To Raise pH (if too acidic): Apply Agricultural Lime (calcium carbonate) or wood ash. Lime adds calcium and neutralizes soil acids.",
-          "To Lower pH (if too alkaline): Add Elemental Sulfur, aluminum sulfate, or peat moss. Sulfur slowly converts to acid through soil bacteria.",
-          "Organic Matter: Consistently adding compost buffers soil pH, keeping it stable over time."
+          "To Raise pH (if soil is too acidic/sour): Apply Agricultural Lime (Calcium Carbonate), a white limestone powder sold in agro-stores, to reduce acidity.",
+          "To Lower pH (if soil is too alkaline/bitter): Apply Elemental Sulfur, a yellow powder sold in agro-stores, to safely increase acidity."
         ]
       }
     ],
-    botanistTip: "Always run a proper soil test before amending. Adding too much lime or sulfur can cause severe nutrient imbalances that take years to resolve."
+    botanistTip: "Always run a proper soil test before amending. Adding too much Agricultural Lime or Elemental Sulfur can cause severe nutrient imbalances that take years to resolve."
   },
   2: {
     id: 2,
@@ -179,29 +178,20 @@ const tipDetails: Record<number, {
     tag: "Disease Prevention",
     gradient: ["#EA580C", "#C2410C"],
     icon: BookOpen,
-    overview: "Early Blight is a destructive fungal infection caused by Alternaria solani. It targets tomato, potato, and eggplant families, overwintering in crop debris and splashing up from the soil during warm, wet weather.",
+    overview: "Early Blight is a fungal disease (Alternaria solani) that makes dark, brown spots with concentric target-like rings on leaves. It attacks nightshade crops: Tomatoes, Potatoes, Eggplants (Garden Eggs), and Peppers.",
     sections: [
       {
-        title: "Symptoms to Watch For",
+        title: "How It Spreads",
         points: [
-          "Target Spotting: Brown to black spots with concentric target-like rings appear on older lower leaves first.",
-          "Yellow Halos: Leaves surrounding the black target spots turn yellow and eventually drop off.",
-          "Stem & Fruit Lesions: Dark, sunken lesions form near the soil line on stems and on the shoulder of fruits."
+          "Fungal spores live in the dirt. When rain drops hit the ground, they splash mud containing these spores up onto the lower leaves of your crops."
         ]
       },
       {
-        title: "Cultural Prevention Checklist",
+        title: "Field Prevention Checklist",
         points: [
-          "Bottom-Only Watering: Direct water to the base of the plant using drip tape or a soaker hose. Fungal spores require leaf wetness to germinate.",
-          "Mulching: Cover the soil under your crops with straw, leaves, or plastic sheeting. This blocks spores from splashing onto lower foliage.",
-          "Lower Pruning: Trim off branches within 12 inches of the soil. This prevents leaves from touching the soil and increases lower air circulation."
-        ]
-      },
-      {
-        title: "Organic Management",
-        points: [
-          "Crop Rotation: Wait 2-3 years before planting nightshades (tomatoes, potatoes) in the same soil patch.",
-          "Copper Sprays: Apply organic liquid copper fungicides preventively when humidity is high or at the first sign of lower leaf spots."
+          "Mulching: Cover the soil around plants with straw or dry grass. This blocks rain from hitting the dirt, preventing mud splashes.",
+          "Lower Pruning: Cut off all leaves closest to the ground (up to 12 inches high) to keep foliage out of the splash zone.",
+          "Drip Irrigation: Water the soil directly at the roots. Avoid overhead watering, which wets leaves and spreads the fungus."
         ]
       }
     ],
@@ -213,35 +203,56 @@ const tipDetails: Record<number, {
     tag: "Best Practices",
     gradient: ["#16A34A", "#15803D"],
     icon: Compass,
-    overview: "Crop rotation is the practice of growing different crop families in the same area across sequential seasons. This prevents soil-borne pathogens from building up, balances nutrient depletion, and optimizes soil structure.",
+    overview: "Think of soil nutrients (like Nitrogen) as money in a bank account. Crop rotation balances these nutrients naturally and prevents pest build-ups.",
     sections: [
       {
-        title: "The Four Core Families",
+        title: "Heavy Feeders (The Big Spenders)",
         points: [
-          "Nightshades (Solanaceae): Tomatoes, Potatoes, Peppers, Eggplants. Heavy feeders that exhaust nitrogen and harbor blights.",
-          "Legumes (Fabaceae): Beans, Peas, Clover. Nitrogen-fixing plants that restore soil fertility by taking nitrogen from the air.",
-          "Crucifers (Brassicaceae): Cabbage, Broccoli, Kale, Radish. Moderate feeders that benefit from clean, nitrogen-rich soil.",
-          "Alliums / Roots (Amaryllidaceae/Apiaceae): Onions, Garlic, Carrots. Light feeders that loosen the soil structure."
+          "Tomatoes, Peppers, Corn, Potatoes, and Squash need huge amounts of Nitrogen. Planting them in the same spot year after year drains the soil until it is barren."
         ]
       },
       {
-        title: "Rotation Sequence Rule",
+        title: "Soil Replenishers (The Depositors)",
         points: [
-          "Follow Heavy Feeders (Nightshades) with Nitrogen Builders (Legumes) to replenish the soil.",
-          "Follow Legumes with Moderate Feeders (Crucifers) to utilize the freshly fixed nitrogen.",
-          "Follow Crucifers with Light Feeders (Roots/Alliums) to scavenge residual nutrients before restarting the cycle."
+          "Beans and Soybeans (legumes) draw Nitrogen from the air and store it in the soil through their roots. When they rot, they release this Nitrogen back for free."
         ]
       },
       {
-        title: "Benefits of Rotation",
+        title: "The Rotation Sequence",
         points: [
-          "Disease Suppression: Spores of blights, wilts, and root rot die out if their host family is absent for 2-3 years.",
-          "Pest Disruption: Breaks the life cycle of overwintering insects like Colorado potato beetles.",
-          "Nutrient Balance: Different root depths and nutrient needs prevent mineral depletion at specific soil zones."
+          "Year 1: Plant Tomatoes or Corn (Big Spenders) to use the soil's Nitrogen.",
+          "Year 2: Plant Beans or Soybeans (Depositors) to put the Nitrogen back.",
+          "Year 3: Plant Squash (Moderate Spender) to utilize the refilled Nitrogen.",
+          "Year 4: Restart the cycle with a new group."
         ]
       }
     ],
-    botanistTip: "Maintain a simple garden map journal. It is easy to forget where nightshades were planted two years ago, especially in small backyard gardens."
+    botanistTip: "Keep a simple garden log. It is easy to forget where you planted heavy feeders last year, but rotation is key to avoiding pests and diseases."
+  },
+  4: {
+    id: 4,
+    title: "Cameroon Planting Seasons",
+    tag: "Seasonal Guide",
+    gradient: ["#EAB308", "#CA8A04"],
+    icon: Sprout,
+    overview: "Cameroon has two main seasons: the Rainy Season (typically March to October) and the Dry Season (typically November to February). Grow crops in their correct season for the best yields.",
+    sections: [
+      {
+        title: "Rainy Season (March - October)",
+        points: [
+          "Crops to Plant: Corn (Maize), Soybeans, Squash (on raised mounds), Peppers, Orange & Peach seedlings, and Raspberries & Blueberries (in cool highland regions like Northwest/Southwest).",
+          "Farming Tip: Moisture spreads fungal diseases like Early Blight and Powdery Mildew. Use straw mulch to cover soil and prevent rain-splash spores."
+        ]
+      },
+      {
+        title: "Dry Season (November - February)",
+        points: [
+          "Crops to Plant (Requires Irrigation): Tomatoes, Potatoes (in cool highlands like Santa/West), Strawberries (rain rots fruit easily), Grapes, Apples, and Cherries.",
+          "Farming Tip: Dry, dusty weather encourages Spider Mites. Apply mulch around roots to keep soil damp and reduce irrigation water evaporation."
+        ]
+      }
+    ],
+    botanistTip: "Dry season cultivation requires watering/irrigation, but it has the major benefit of much lower fungal disease infection rates since there is no rain to splash spores."
   }
 };
 
@@ -685,7 +696,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   modalOverlay: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     justifyContent: "center",
     alignItems: "center",
     padding: 20,

@@ -34,13 +34,13 @@ export const PREDICT_ENDPOINT = `${BASE_URL}/predict`;
 
 const TIMEOUT_MS = 15000;
 
-const getFileName = (imageUri) => {
+const getFileName = (imageUri: string) => {
   const uriParts = imageUri.split('/');
   const name = uriParts[uriParts.length - 1] || 'image.jpg';
   return name;
 };
 
-const getMimeType = (filename) => {
+const getMimeType = (filename: string) => {
   const extension = filename.split('.').pop()?.toLowerCase();
   if (extension === 'png') return 'image/png';
   if (extension === 'jpg' || extension === 'jpeg') return 'image/jpeg';
@@ -48,7 +48,7 @@ const getMimeType = (filename) => {
   return 'image/jpeg';
 };
 
-const createMultipartBody = async (imageUri, userId?: string) => {
+const createMultipartBody = async (imageUri: string, userId?: string) => {
   const formData = new FormData();
   const filename = getFileName(imageUri);
   const mimeType = getMimeType(filename);
@@ -182,7 +182,7 @@ export const predictDisease = async (imageUri: string, userId?: string) => {
 };
 
 // --- Authentication services ---
-export const registerUser = async (username, email, password) => {
+export const registerUser = async (username: string, email: string, password: string) => {
   try {
     const response = await fetch(`${BASE_URL}/register`, {
       method: 'POST',
@@ -194,12 +194,12 @@ export const registerUser = async (username, email, password) => {
       throw new Error(data.error || 'Registration failed');
     }
     return data;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(err.message || 'Error occurred during registration');
   }
 };
 
-export const loginUser = async (email, password) => {
+export const loginUser = async (email: string, password: string) => {
   try {
     const response = await fetch(`${BASE_URL}/login`, {
       method: 'POST',
@@ -211,12 +211,12 @@ export const loginUser = async (email, password) => {
       throw new Error(data.error || 'Login failed');
     }
     return data;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(err.message || 'Error occurred during login');
   }
 };
 
-export const updateSettings = async (userId, username, password) => {
+export const updateSettings = async (userId: string, username: string, password?: string) => {
   try {
     const response = await fetch(`${BASE_URL}/update-settings`, {
       method: 'POST',
@@ -228,13 +228,13 @@ export const updateSettings = async (userId, username, password) => {
       throw new Error(data.error || 'Failed to update settings');
     }
     return data;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(err.message || 'Error updating settings');
   }
 };
 
 // --- Farms CRUD ---
-export const getFarms = async (userId) => {
+export const getFarms = async (userId: string) => {
   try {
     const response = await fetch(`${BASE_URL}/farms?user_id=${userId}`);
     const data = await response.json();
@@ -242,12 +242,12 @@ export const getFarms = async (userId) => {
       throw new Error(data.error || 'Failed to fetch farms');
     }
     return data.farms || [];
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(err.message || 'Error fetching farms');
   }
 };
 
-export const addFarm = async (userId, name, cropType, areaSize) => {
+export const addFarm = async (userId: string, name: string, cropType: string, areaSize: number | string) => {
   try {
     const response = await fetch(`${BASE_URL}/farms`, {
       method: 'POST',
@@ -259,12 +259,12 @@ export const addFarm = async (userId, name, cropType, areaSize) => {
       throw new Error(data.error || 'Failed to create farm');
     }
     return data.farm;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(err.message || 'Error creating farm');
   }
 };
 
-export const deleteFarm = async (farmId) => {
+export const deleteFarm = async (farmId: string | number) => {
   try {
     const response = await fetch(`${BASE_URL}/farms/${farmId}`, {
       method: 'DELETE',
@@ -274,13 +274,13 @@ export const deleteFarm = async (farmId) => {
       throw new Error(data.error || 'Failed to delete farm');
     }
     return data;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(err.message || 'Error deleting farm');
   }
 };
 
 // --- Support ticket contact ---
-export const submitSupportTicket = async (userId, subject, message) => {
+export const submitSupportTicket = async (userId: string, subject: string, message: string) => {
   try {
     const response = await fetch(`${BASE_URL}/support`, {
       method: 'POST',
@@ -292,13 +292,13 @@ export const submitSupportTicket = async (userId, subject, message) => {
       throw new Error(data.error || 'Failed to submit support ticket');
     }
     return data;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(err.message || 'Error submitting support ticket');
   }
 };
 
 // --- Dynamic user history ---
-export const getUserScans = async (userId) => {
+export const getUserScans = async (userId: string) => {
   try {
     const response = await fetch(`${BASE_URL}/scans?user_id=${userId}`);
     const data = await response.json();
@@ -306,11 +306,11 @@ export const getUserScans = async (userId) => {
       throw new Error(data.error || 'Failed to fetch scan logs');
     }
     const rawScans = data.scans || [];
-    return rawScans.map((r) => ({
+    return rawScans.map((r: any) => ({
       ...r,
       image_path: r.image_path ? `${BASE_URL}/${r.image_path}` : null,
     }));
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(err.message || 'Error fetching scan logs');
   }
 };
