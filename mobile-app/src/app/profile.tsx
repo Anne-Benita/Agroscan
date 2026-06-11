@@ -354,9 +354,6 @@ export default function ProfileScreen() {
       <View style={[styles.container, { backgroundColor: theme.background }]}>
         <ScrollView contentContainerStyle={styles.authScroll}>
           <View style={styles.authHeaderBlock}>
-            <View style={styles.authLogoCircle}>
-              <Sparkles color="#16A34A" size={28} />
-            </View>
             <Text style={[styles.authTitle, { color: theme.text }]}>AgroScan Portal</Text>
             <Text style={[styles.authSubtitle, { color: theme.textSecondary }]}>
               Join over 10,000+ growers protecting crops using AI
