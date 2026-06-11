@@ -364,6 +364,11 @@ def predict():
         img_bytes = image_file.read()
         prediction_key, confidence = predict_image(img_bytes)
         
+        if prediction_key == "Invalid_Image___Not_A_Leaf":
+            return jsonify({
+                "error": "The uploaded image does not appear to be a plant leaf. Please capture a clear, close-up photo of a crop leaf."
+            }), 400
+            
         # Save image locally in static uploads for reference
         os.makedirs('./static/uploads', exist_ok=True)
         timestamp_str = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")

@@ -59,12 +59,41 @@ else:
 model.eval()
 
 
+def is_leaf_image(img_pil, threshold=0.08):
+    """
+    Heuristic pixel check to verify if the image has leaf-like characteristics (green/yellow/brown tones).
+    Filters out non-leaf images like dresses, beds, text, or blank screens.
+    """
+    img_small = img_pil.resize((32, 32))
+    pixels = list(img_small.getdata())
+    
+    leaf_pixel_count = 0
+    total_pixels = len(pixels)
+    
+    for r, g, b in pixels:
+        # Green leaf check (green is dominant)
+        if g > r + 5 and g > b + 5:
+            leaf_pixel_count += 1
+        # Yellow/brown diseased leaf check (yellow-red-green mix)
+        elif r > g + 5 and g > b + 5 and r > 50 and g > 40 and b < 150:
+            leaf_pixel_count += 1
+            
+    leaf_ratio = leaf_pixel_count / total_pixels
+    print(f"[Leaf Filter] Leaf pixel ratio: {leaf_ratio:.4f}")
+    return leaf_ratio >= threshold
+
+
 def predict_image(img_bytes):
     """
     Takes raw image bytes, runs inference through ResNet34 model,
     and returns predicted class label and softmax confidence percentage.
     """
     img_pil = Image.open(io.BytesIO(img_bytes)).convert('RGB')
+    
+    # Run leaf validation filter
+    if not is_leaf_image(img_pil):
+        return "Invalid_Image___Not_A_Leaf", 0.0
+        
     tensor = transform(img_pil)
     xb = tensor.unsqueeze(0)
     

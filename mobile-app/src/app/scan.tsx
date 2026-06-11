@@ -122,18 +122,23 @@ export default function ScanScreen() {
         },
       });
 
-    } catch (e) {
-      console.log('[Scan] Server prediction failed, prompt demo mode:', e);
-      const { diseases } = require("./home");
+    } catch (e: any) {
+      console.log('[Scan] Server prediction failed:', e);
+      const errorMessage = e instanceof Error ? e.message : String(e);
       
-      Alert.alert(
-        "Connection Offline",
-        "Could not connect to the AgroScan server. Would you like to run in offline Demo Mode?",
-        [
-          {
-            text: "Cancel",
-            style: "cancel",
-          },
+      if (errorMessage.includes("does not appear to be a plant leaf") || errorMessage.includes("No image file uploaded")) {
+        Alert.alert("Invalid Image", errorMessage);
+      } else {
+        const { diseases } = require("./home");
+        
+        Alert.alert(
+          "Connection Offline",
+          "Could not connect to the AgroScan server. Would you like to run in offline Demo Mode?",
+          [
+            {
+              text: "Cancel",
+              style: "cancel",
+            },
           {
             text: "Use Demo Mode",
             onPress: () => {
