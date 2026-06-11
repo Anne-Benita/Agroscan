@@ -9,11 +9,11 @@ import { Platform } from 'react-native';
 
 export const Colors = {
   light: {
-    text: '#0F172A',              // Slate 900 (Dark Slate text)
+    text: '#000000',              // Pure Black
     background: '#F8FAFC',        // Slate 50 (Soft off-white background)
     backgroundElement: '#FFFFFF', // Pure White for cards/elements
     backgroundSelected: '#F1F5F9',// Slate 100
-    textSecondary: '#64748B',     // Slate 500
+    textSecondary: '#000000',     // Pure Black secondary text
     primary: '#16A34A',          // Forest Green 600
     tint: '#16A34A',
   },

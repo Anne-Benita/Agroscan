@@ -1851,7 +1851,7 @@ const styles = StyleSheet.create({
   modalFieldLabel: {
     fontSize: 11,
     fontWeight: "600",
-    color: "#888",
+    color: "#000000",
     marginBottom: 4,
     textTransform: "uppercase",
   },
@@ -1886,7 +1886,7 @@ const styles = StyleSheet.create({
   },
   modalProgressLabel: {
     fontSize: 11,
-    color: "#888",
+    color: "#000000",
     fontWeight: "600",
   },
   modalBulletRow: {

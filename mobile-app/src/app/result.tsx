@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 11,
     fontWeight: "600",
-    color: "#888",
+    color: "#000000",
     marginBottom: 4,
     textTransform: "uppercase",
   },
@@ -427,7 +427,7 @@ const styles = StyleSheet.create({
   },
   progressLabel: {
     fontSize: 11,
-    color: "#888",
+    color: "#000000",
     fontWeight: "600",
   },
   bulletRow: {

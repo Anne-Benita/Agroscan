@@ -264,9 +264,6 @@ export default function Home() {
       {/* HEADER */}
       <View style={[styles.header, { backgroundColor: theme.backgroundElement }]}>
         <Text style={styles.appName}>AgroScan</Text>
-        <View style={styles.growerBadge}>
-          <Text style={styles.growerText}>🌿 Grower Mode</Text>
-        </View>
       </View>
 
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
@@ -441,7 +438,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 55,
+    paddingTop: 35,
     paddingHorizontal: 20,
     paddingBottom: 15,
     ...Platform.select({
@@ -684,7 +681,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
     marginTop: 4,
     textAlign: "center",
-    color: "#777",
+    color: "#000000",
     fontWeight: "600",
   },
   modalOverlay: {
