@@ -416,7 +416,7 @@ export default function ProfileScreen() {
                     <User color={theme.textSecondary} size={18} style={styles.inputIcon} />
                     <TextInput
                       style={[styles.input, { color: theme.text }]}
-                      placeholder="e.g. Grower John"
+                      placeholder="e.g. Anne N"
                       placeholderTextColor={theme.textSecondary}
                       value={authUsername}
                       onChangeText={setAuthUsername}
@@ -431,7 +431,7 @@ export default function ProfileScreen() {
                   <Mail color={theme.textSecondary} size={18} style={styles.inputIcon} />
                   <TextInput
                     style={[styles.input, { color: theme.text }]}
-                    placeholder="grower@agroscan.ai"
+                    placeholder="name@gmail.com"
                     placeholderTextColor={theme.textSecondary}
                     keyboardType="email-address"
                     autoCapitalize="none"
