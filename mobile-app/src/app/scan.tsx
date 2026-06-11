@@ -160,6 +160,7 @@ export default function ScanScreen() {
           },
         ]
       );
+      }
     } finally {
       setLoading(false);
     }
