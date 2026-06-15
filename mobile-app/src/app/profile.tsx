@@ -352,6 +352,13 @@ export default function ProfileScreen() {
   if (!user) {
     return (
       <View style={[styles.container, { backgroundColor: theme.background }]}>
+        <Pressable 
+          style={styles.authBackBtn} 
+          onPress={() => router.push("/home")}
+        >
+          <ArrowLeft color={theme.text} size={24} />
+        </Pressable>
+
         <ScrollView contentContainerStyle={styles.authScroll}>
           <View style={styles.authHeaderBlock}>
             <Text style={[styles.authTitle, { color: theme.text }]}>AgroScan Portal</Text>
@@ -2033,5 +2040,16 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 18,
     marginBottom: 20,
+  },
+  authBackBtn: {
+    position: "absolute",
+    top: Platform.OS === "ios" ? 55 : 40,
+    left: 20,
+    zIndex: 10,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
