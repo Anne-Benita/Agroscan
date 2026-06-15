@@ -34,6 +34,7 @@ import {
   AlertTriangle,
   Info,
   Eye,
+  EyeOff,
   Activity,
   Pill
 } from "lucide-react-native";
@@ -63,6 +64,7 @@ export default function ProfileScreen() {
   const [authUsername, setAuthUsername] = useState("");
   const [authLoadingState, setAuthLoadingState] = useState(false);
   const [authError, setAuthError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   // Profile Active Section State
   // Values: null, 'farms', 'history', 'premium', 'settings', 'notifications', 'support'
@@ -200,6 +202,18 @@ export default function ProfileScreen() {
     } finally {
       setAuthLoadingState(false);
     }
+  };
+
+  const handleForgotPassword = () => {
+    if (!authEmail) {
+      Alert.alert("Email Required", "Please enter your email address in the field first, then tap 'Forgot Password?'.");
+      return;
+    }
+    Alert.alert(
+      "Reset Password",
+      `A password reset link has been requested for: ${authEmail}.\n\n(Demo/defense simulation: If this email is registered, you would receive an automated recovery link.)`,
+      [{ text: "OK" }]
+    );
   };
 
   // --- Farms Handlers ---
@@ -450,19 +464,40 @@ export default function ProfileScreen() {
 
               <View style={styles.inputGroup}>
                 <Text style={[styles.inputLabel, { color: theme.text }]}>Password</Text>
-                <View style={[styles.inputWrapper, { borderColor: theme.backgroundSelected }]}>
+                <View style={[styles.inputWrapper, { borderColor: theme.backgroundSelected, paddingRight: 12 }]}>
                   <Lock color={theme.textSecondary} size={18} style={styles.inputIcon} />
                   <TextInput
                     style={[styles.input, { color: theme.text }]}
-                    placeholder="••••••••"
+                    placeholder="Enter password"
                     placeholderTextColor={theme.textSecondary}
-                    secureTextEntry
+                    secureTextEntry={!showPassword}
                     autoCapitalize="none"
                     value={authPassword}
                     onChangeText={setAuthPassword}
                   />
+                  <Pressable 
+                    onPress={() => setShowPassword(!showPassword)}
+                    style={{ padding: 4 }}
+                  >
+                    {showPassword ? (
+                      <Eye color={theme.textSecondary} size={18} />
+                    ) : (
+                      <EyeOff color={theme.textSecondary} size={18} />
+                    )}
+                  </Pressable>
                 </View>
               </View>
+
+              {isLoginTab ? (
+                <Pressable 
+                  onPress={handleForgotPassword}
+                  style={{ alignSelf: 'flex-end', marginTop: 8 }}
+                >
+                  <Text style={{ color: '#16A34A', fontSize: 13, fontWeight: '600' }}>
+                    Forgot Password?
+                  </Text>
+                </Pressable>
+              ) : null}
             </View>
 
             <Pressable
