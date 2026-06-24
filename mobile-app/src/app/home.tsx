@@ -353,7 +353,7 @@ export default function Home() {
         ) : (
           <View style={[styles.noResultCard, { backgroundColor: theme.backgroundElement }]}>
             <Text style={{ color: theme.textSecondary, textAlign: 'center' }}>
-              No diseases found matching "{search}"
+              No diseases found matching &quot;{search}&quot;
             </Text>
           </View>
         )}

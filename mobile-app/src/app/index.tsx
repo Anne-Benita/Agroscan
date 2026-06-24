@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View, Image, Animated, ActivityIndicator, Text, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '@/constants/theme';
@@ -11,9 +11,9 @@ export default function SplashScreen() {
   const scheme = (colorScheme === 'dark' ? 'dark' : 'light') as keyof typeof Colors;
   const theme = Colors[scheme];
   
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-  const scaleAnim = useRef(new Animated.Value(0.7)).current;
-  const textFadeAnim = useRef(new Animated.Value(0)).current;
+  const [fadeAnim] = useState(() => new Animated.Value(0));
+  const [scaleAnim] = useState(() => new Animated.Value(0.7));
+  const [textFadeAnim] = useState(() => new Animated.Value(0));
 
   useEffect(() => {
     // Parallel spring scale and fade entry animations

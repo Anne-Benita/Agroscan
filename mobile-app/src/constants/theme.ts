@@ -55,6 +55,19 @@ export const Fonts = Platform.select({
   },
 });
 
+export const OnestFonts = Platform.select({
+  web: {
+    regular: 'Onest',
+    medium: 'Onest',
+    bold: 'Onest',
+  },
+  default: {
+    regular: 'Onest_400Regular',
+    medium: 'Onest_500Medium',
+    bold: 'Onest_700Bold',
+  }
+}) as { regular: string; medium: string; bold: string };
+
 export const Spacing = {
   half: 2,
   one: 4,

@@ -38,7 +38,7 @@ import {
   Activity,
   Pill
 } from "lucide-react-native";
-import { Colors } from "@/constants/theme";
+import { Colors, OnestFonts } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { useAuth } from "@/services/authContext";
 import {
@@ -96,7 +96,6 @@ export default function ProfileScreen() {
   // Notifications Section States
   const [notifWeather, setNotifWeather] = useState(true);
   const [notifOutbreak, setNotifOutbreak] = useState(true);
-  const [notifDigest, setNotifDigest] = useState(false);
   const mockNotifications = [
     {
       id: "1",
@@ -112,43 +111,12 @@ export default function ProfileScreen() {
       time: "1 day ago",
       type: "danger",
     },
-    {
-      id: "3",
-      title: "Weekly Cultivation Digest 🌿",
-      body: "Great job! You logged 3 healthy scans this week. Crop health score is 96%. Keep scanning to monitor progress.",
-      time: "3 days ago",
-      type: "info",
-    },
   ];
 
   // Support Section States
   const [supportSubject, setSupportSubject] = useState("");
   const [supportMessage, setSupportMessage] = useState("");
   const [supportActionLoading, setSupportActionLoading] = useState(false);
-
-  // Sync settings and load lists when user logs in
-  useEffect(() => {
-    if (user) {
-      setSettingsUsername(user.username);
-      // Load initial lists for main profile and sub-sections in background
-      loadHistoryData();
-      loadFarmsData();
-    } else {
-      setHistoryList([]);
-      setFarmsList([]);
-    }
-  }, [user]);
-
-  // Support section-specific re-fetching
-  useEffect(() => {
-    if (user) {
-      if (activeSection === "farms") {
-        loadFarmsData();
-      } else if (activeSection === "history") {
-        loadHistoryData();
-      }
-    }
-  }, [activeSection]);
 
   const loadFarmsData = async () => {
     if (!user) return;
@@ -177,6 +145,32 @@ export default function ProfileScreen() {
       setHistoryLoading(false);
     }
   };
+
+  // Sync settings and load lists when user logs in
+  useEffect(() => {
+    if (user) {
+      const timer = setTimeout(() => {
+        setSettingsUsername(user.username);
+        loadHistoryData();
+        loadFarmsData();
+      }, 0);
+      return () => clearTimeout(timer);
+    } else {
+      setHistoryList([]);
+      setFarmsList([]);
+    }
+  }, [user]);
+
+  // Support section-specific re-fetching
+  useEffect(() => {
+    if (user) {
+      if (activeSection === "farms") {
+        loadFarmsData();
+      } else if (activeSection === "history") {
+        loadHistoryData();
+      }
+    }
+  }, [activeSection]);
 
   // --- Auth Handlers ---
   const handleAuthSubmit = async () => {
@@ -395,8 +389,8 @@ export default function ProfileScreen() {
                 <Text
                   style={[
                     styles.tabButtonText,
-                    { color: isLoginTab ? "#16A34A" : theme.textSecondary },
                     isLoginTab && styles.activeTabButtonText,
+                    { color: isLoginTab ? "#16A34A" : theme.textSecondary }
                   ]}
                 >
                   Sign In
@@ -412,8 +406,8 @@ export default function ProfileScreen() {
                 <Text
                   style={[
                     styles.tabButtonText,
-                    { color: !isLoginTab ? "#16A34A" : theme.textSecondary },
                     !isLoginTab && styles.activeTabButtonText,
+                    { color: !isLoginTab ? "#16A34A" : theme.textSecondary }
                   ]}
                 >
                   Create Account
@@ -873,9 +867,6 @@ export default function ProfileScreen() {
 
         <ScrollView contentContainerStyle={styles.sectionScroll}>
           <View style={[styles.premiumBanner, { backgroundColor: isPremium ? "#FDF2F8" : "#F0FDF4" }]}>
-            <View style={[styles.premiumCrown, { backgroundColor: isPremium ? "#FBCFE8" : "#DCFCE7" }]}>
-              <Sparkles color={isPremium ? "#DB2777" : "#16A34A"} size={36} />
-            </View>
             <Text style={[styles.premiumStatusTitle, { color: theme.text }]}>
               Account Tier: {isPremium ? "Premium Grower 👑" : "AgroScan Free 🌿"}
             </Text>
@@ -1017,7 +1008,7 @@ export default function ProfileScreen() {
 
         <ScrollView contentContainerStyle={styles.sectionScroll}>
           <View style={[styles.cardForm, { backgroundColor: theme.backgroundElement, paddingVertical: 10 }]}>
-            <View style={[styles.toggleRow, { borderBottomColor: theme.backgroundSelected }]}>
+            <View style={[styles.toggleRow, { borderBottomWidth: 1, borderBottomColor: theme.backgroundSelected }]}>
               <View style={styles.toggleTextGroup}>
                 <Text style={[styles.toggleTitle, { color: theme.text }]}>Weather Alerts</Text>
                 <Text style={[styles.toggleDesc, { color: theme.textSecondary }]}>
@@ -1027,7 +1018,7 @@ export default function ProfileScreen() {
               <Switch value={notifWeather} onValueChange={setNotifWeather} thumbColor="#16A34A" />
             </View>
 
-            <View style={[styles.toggleRow, { borderBottomColor: theme.backgroundSelected }]}>
+            <View style={styles.toggleRow}>
               <View style={styles.toggleTextGroup}>
                 <Text style={[styles.toggleTitle, { color: theme.text }]}>Disease Outbreak Alerts</Text>
                 <Text style={[styles.toggleDesc, { color: theme.textSecondary }]}>
@@ -1035,16 +1026,6 @@ export default function ProfileScreen() {
                 </Text>
               </View>
               <Switch value={notifOutbreak} onValueChange={setNotifOutbreak} thumbColor="#16A34A" />
-            </View>
-
-            <View style={styles.toggleRow}>
-              <View style={styles.toggleTextGroup}>
-                <Text style={[styles.toggleTitle, { color: theme.text }]}>Weekly Digest</Text>
-                <Text style={[styles.toggleDesc, { color: theme.textSecondary }]}>
-                  Receive custom summary graphs.
-                </Text>
-              </View>
-              <Switch value={notifDigest} onValueChange={setNotifDigest} thumbColor="#16A34A" />
             </View>
           </View>
 
@@ -1457,12 +1438,15 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   authTitle: {
-    fontSize: 26,
+    fontFamily: OnestFonts.bold,
     fontWeight: "bold",
+    fontSize: 26,
     marginBottom: 8,
     letterSpacing: -0.5,
   },
   authSubtitle: {
+    fontFamily: OnestFonts.medium,
+    fontWeight: "500",
     fontSize: 14,
     textAlign: "center",
     lineHeight: 20,
@@ -1503,8 +1487,9 @@ const styles = StyleSheet.create({
     borderBottomColor: "#16A34A",
   },
   tabButtonText: {
-    fontSize: 14,
+    fontFamily: OnestFonts.bold,
     fontWeight: "bold",
+    fontSize: 14,
   },
   activeTabButtonText: {
     fontWeight: "bold",
@@ -1519,9 +1504,10 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   errorText: {
+    fontFamily: OnestFonts.medium,
+    fontWeight: "500",
     color: "#EF4444",
     fontSize: 12,
-    fontWeight: "600",
     flex: 1,
   },
   formInputs: {
@@ -1532,8 +1518,9 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   inputLabel: {
+    fontFamily: OnestFonts.medium,
+    fontWeight: "500",
     fontSize: 13,
-    fontWeight: "600",
   },
   inputWrapper: {
     flexDirection: "row",
@@ -1547,6 +1534,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   input: {
+    fontFamily: OnestFonts.regular,
     flex: 1,
     fontSize: 14,
     height: "100%",
@@ -1559,9 +1547,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   authSubmitBtnText: {
+    fontFamily: OnestFonts.bold,
+    fontWeight: "bold",
     color: "#fff",
     fontSize: 14,
-    fontWeight: "bold",
   },
 
   // --- Sub-sections UI Styles ---
@@ -2030,7 +2019,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingVertical: 14,
-    borderBottomWidth: 1,
   },
   toggleTextGroup: {
     flex: 1,
